@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyShop - Custom T-Shirts & Hoodies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to EasyShop</h1>
+    <p>Customize Your T-Shirts & Hoodies with Your Own Design!</p>
+  </header>
+
+  <main>
+    <div class="product-container">
+      <div class="product-preview">
+        <h2>Your Design Preview</h2>
+        <canvas id="tshirt-canvas" width="500" height="600"></canvas>
+      </div>
+      <div class="customization-tool">
+        <h2>Customize Your Product</h2>
+        <div class="upload-section">
+          <label for="image-upload" class="upload-btn">Upload Your Design</label>
+          <input type="file" id="image-upload" accept="image/*" />
+        </div>
+        <button id="reset-btn" class="reset-btn">Reset Design</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 EasyShop. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.2.4/fabric.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

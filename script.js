@@ -1,44 +1,54 @@
-// Initialize Fabric.js canvas
+// Customization Popup Logic
+const customizeBtn = document.getElementById('customize-btn');
+const popup = document.getElementById('customization-popup');
+const closeBtn = document.querySelector('.close-btn');
+
+// Open Popup
+customizeBtn.addEventListener('click', () => {
+  popup.style.display = 'flex';
+});
+
+// Close Popup
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+// Initialize Fabric.js Canvas
 const canvas = new fabric.Canvas('tshirt-canvas', {
-  backgroundColor: '#f4f4f4', // Background color for the canvas
+  backgroundColor: '#f4f4f4',
 });
 
-// Load t-shirt image from local file
-const tshirtImageUrl = 'tshirt-mockup.jpg'; // Replace with your local t-shirt image path
-fabric.Image.fromURL(tshirtImageUrl, (img) => {
-  img.scaleToWidth(500); // Scale the image to fit the canvas width
-  canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-    originX: 'left',
-    originY: 'top',
-  });
+// Load T-Shirt Mockup
+fabric.Image.fromURL('tshirt-mockup.jpg', (img) => {
+  img.scaleToWidth(500);
+  canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
 });
 
-// Handle image upload
+// Handle Image Upload
 document.getElementById('image-upload').addEventListener('change', (e) => {
   const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = (event) => {
       fabric.Image.fromURL(event.target.result, (img) => {
-        img.scaleToWidth(150); // Adjust size as needed
+        img.scaleToWidth(150);
         img.set({
-          left: 200, // Center the image horizontally
-          top: 250,  // Center the image vertically
-          selectable: true, // Allow the user to move and resize the image
+          left: 200,
+          top: 250,
+          selectable: true,
         });
         canvas.add(img);
-        canvas.setActiveObject(img); // Make the uploaded image active
+        canvas.setActiveObject(img);
       });
     };
     reader.readAsDataURL(file);
   }
 });
 
-// Reset design
+// Reset Design
 document.getElementById('reset-btn').addEventListener('click', () => {
-  canvas.clear(); // Clear the canvas
-  // Reload t-shirt image
-  fabric.Image.fromURL(tshirtImageUrl, (img) => {
+  canvas.clear();
+  fabric.Image.fromURL('tshirt-mockup.jpg', (img) => {
     img.scaleToWidth(500);
     canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
   });

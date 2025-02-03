@@ -4,7 +4,8 @@ const canvas = new fabric.Canvas('tshirt-canvas', {
 });
 
 // Load t-shirt image from local file
-fabric.Image.fromURL('tshirt-mockup.jpg', (img) => {
+const tshirtImageUrl = 'tshirt-mockup.jpg'; // Replace with your local t-shirt image path
+fabric.Image.fromURL(tshirtImageUrl, (img) => {
   img.scaleToWidth(500); // Scale the image to fit the canvas width
   canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
     originX: 'left',
@@ -19,7 +20,7 @@ document.getElementById('image-upload').addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.onload = (event) => {
       fabric.Image.fromURL(event.target.result, (img) => {
-        img.scaleToWidth(100); // Adjust size as needed
+        img.scaleToWidth(150); // Adjust size as needed
         img.set({
           left: 200, // Center the image horizontally
           top: 250,  // Center the image vertically
@@ -37,7 +38,7 @@ document.getElementById('image-upload').addEventListener('change', (e) => {
 document.getElementById('reset-btn').addEventListener('click', () => {
   canvas.clear(); // Clear the canvas
   // Reload t-shirt image
-  fabric.Image.fromURL('tshirt-mockup.jpg', (img) => {
+  fabric.Image.fromURL(tshirtImageUrl, (img) => {
     img.scaleToWidth(500);
     canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
   });
